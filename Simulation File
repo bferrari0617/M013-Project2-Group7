@@ -1,12 +1,24 @@
-def exploitOnly():
-    h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
+import random
+
+
+h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
+
+
+def exploitOnly() -> float:
     result = 0
     best = h.index(max(h))
+    
+    if best == 0:
+        m, d = 9, 3
+    elif best == 1:
+        m, d = 7, 5
+    else:
+        m, d = 11, 7
 
     for item in h:
         result += item
     for i in range(297):
-        result += h[best]
+        result += random.normalvariate(m, d)
+
     return result
-    
     
