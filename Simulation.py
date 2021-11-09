@@ -54,36 +54,54 @@ def c2():
 	return random.normalvariate(c2avg, c2std)
 def c3():
 	return random.normalvariate(c3avg, c3std)
-def returnhappy(n):
-	if (n == 0):
-		happy = c1()
-	elif (n == 1):
-		happy = c2()
-	else:
-		happy = c3()
-	return happy
 
-def eGreeydy(e):
+def eGreedy(e):
 	result = 0
-	#First 3 day:
-	firstThreeDays = []
-	firstThreeDays.append(c1())
-	firstThreeDays.append(c2())
-	firstThreeDays.append(c2())
-	best = firstThreeDays.index(max(firstThreeDays))
-	result += sum(firstThreeDays)
-	# calculate assign for rest 297 days:
-	bestcafeDays = 297 * e // 100
-	restDays = 297 - bestcafeDays
-	# go to the favorate cafe e% times:
-	for i in range(bestcafeDays):
-		happy = returnhappy(best)
-		result += happy
-	# go to the random cafe rest times:
-	for i in range (restDays):
-		cafe = random.randrange(3)
-		happy = returnhappy(cafe)
-		result += happy
+	happiness = []
+	happiness.append(c1())
+	happiness.append(c2())
+	happiness.append(c3())
+	result += sum(happiness)
+	c1n = 1
+	c2n = 1
+	c3n = 1
+	for i in range (297):
+		r = 100 * random.random()
+		x = random.randrange(3)
+		if (r < e):
+			if (x == 0):
+				c1n += 1
+				c1h = c1()
+				happiness[0] = (happiness[0] + c1h) / c1n
+				result += c1h
+			elif (x == 1):
+				c2n += 1
+				c2h = c2()
+				happiness[1] = (happiness[1] + c2h) / c2n
+				result += c2h
+			else:
+				c3n += 1
+				c3h = c3()
+				happiness[2] = (happiness[2] + c3h) / c3n
+				result += c3h
+		else:
+			y = happiness.index(max(happiness))
+			if (x == 0):
+				c1n += 1
+				c1h = c1()
+				happiness[0] = (happiness[0] + c1h) / c1n
+				result += c1h
+			elif (x == 1):
+				c2n += 1
+				c2h = c2()
+				happiness[1] = (happiness[1] + c2h) / c2n
+				result += c2h
+			else:
+				c3n += 1
+				c3h = c3()
+				happiness[2] = (happiness[2] + c3h) / c3n
+				result += c3h
+
 	return result
 
 def simulation(t,e):
@@ -105,33 +123,57 @@ def simulation(t,e):
 
 	regret_explore = Op_happy - ex_explore
 	regret_exploit = Op_happy - ex_exploit
-	regret_eGreddy = Op_happy - ex_eGreedy
+	regret_eGreedy = Op_happy - ex_eGreedy
 
 	total_explore = 0
 	total_exploit = 0
 	total_eGreedy = 0
-	for i in range (0,t):
-		total_explore += explore_only()
-		total_exploit += exploitOnly()
-		total_eGreedy += eGreeydy(e)
 
+	total_regret1 = 0
+	total_regret2 = 0
+	total_regret3 = 0
+
+	for i in range (0,t):
+		h1 = explore_only()
+		h2 = exploitOnly()
+		h3 = eGreedy(e)
+
+		total_explore += h1
+		total_exploit += h2
+		total_eGreedy += h3
+
+		total_regret1 += (Op_happy - h1)
+		total_regret2 += (Op_happy - h2)
+		total_regret3 += (Op_happy - h3)
 
 	aver_explore = total_explore / t
 	aver_exploit = total_exploit / t
 	aver_eGreedy = total_eGreedy / t
 
+	aver_regret1 = total_regret1 / t
+	aver_regret2 = total_regret2 / t
+	aver_regret3 = total_regret3 / t
+
+
 	print("Optimum happiness: ",Op_happy);
 	print("Expected total happiness for Exploit Only: ",ex_exploit);
 	print("Expected total happiness for Explore Only: ", ex_explore);
 	print("Expected total happiness for eGreedy: ", ex_eGreedy);
+	print("Expected regret for Exploit Only: ", regret_exploit);
+	print("Expected regret for Explore Only: ", regret_explore);
+	print("Expected regret for eGreedy: ", regret_eGreedy);
 	print("Average total happiness for Exploit Only: ", aver_exploit);
 	print("Average total happiness for Explore Only: ", aver_explore);
 	print("Average total happiness for eGreedy: ", aver_eGreedy);
+	print("Average regret for Exploit Only: ", aver_regret1);
+	print("Average regret for Explore Only: ", aver_regret2);
+	print("Average regret for eGreedy: ", aver_regret3);
+
 	print()
 
 print("trails: 1000; e: 36%")
 simulation(1000,36)
 print("trails: 10000; e: 36%")
 simulation(10000,36)
-print("trails: 100000; e: 36%")
-simulation(100000,36)
+#print("trails: 100000; e: 36%")
+#simulation(100000,36)
