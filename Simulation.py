@@ -171,10 +171,10 @@ def simulation(t,e):
 
 	print()
 
-	print("trails: 1000; e: 12%")
-	simulation(1000,12)
-	print("trails: 10000; e: 12%")
-	simulation(10000,12)
-	print("trails: 100000; e: 12%")
-	simulation(100000,12)
+print("trails: 1000; e: 12%")
+simulation(1000,12)
+print("trails: 10000; e: 12%")
+simulation(10000,12)
+print("trails: 100000; e: 12%")
+simulation(100000,12)
 
