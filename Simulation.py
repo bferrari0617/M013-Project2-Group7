@@ -70,6 +70,7 @@ def eGreedy(e):
 	happiness.append(c2())
 	happiness.append(c3())
 	result += sum(happiness) #add three days' happyiness point
+	#initial int visit times. Initial from one because you already viisted each cafeteria onece
 	c1n = 1
 	c2n = 1
 	c3n = 1
