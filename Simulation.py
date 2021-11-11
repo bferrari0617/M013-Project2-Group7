@@ -103,13 +103,13 @@ def eGreedy(e):
 		#Otherwise, go to the cafeteria earn the best happiness so far
 			y = happiness.index(max(happiness))#from the happiness list, get the index has the highest number is the best happiness cafeteria so far
 			#If first number is the highest, go to the cafeteria one
-			if (x == 0):
+			if (y == 0):
 				c1n += 1 #add visit time
 				c1h = c1() #get happiness score by using helper function
 				happiness[0] = (happiness[0] + c1h) / c1n #update the average happiness score 
 				result += c1h # add to result
 			#if the second number is the highest, go to the cafeteria two
-			elif (x == 1):
+			elif (y == 1):
 				c2n += 1
 				c2h = c2()
 				happiness[1] = (happiness[1] + c2h) / c2n
