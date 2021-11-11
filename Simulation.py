@@ -47,66 +47,81 @@ def exploitOnly() -> float:
 #Project 2 part 3
 #Timothy Liu‘
 
+#The number provided from class:
 c1avg = 9
 c1std = 3
 c2avg = 7
 c2std = 5
 c3avg = 11
 c3std = 7
+#Some helper function, return the happiness value each time by using the given num
 def c1():
 	return random.normalvariate(c1avg, c1std)
 def c2():
 	return random.normalvariate(c2avg, c2std)
 def c3():
 	return random.normalvariate(c3avg, c3std)
-
+#eGreedy(e) starts here, e is percentage
 def eGreedy(e):
-	result = 0
-	happiness = []
-	happiness.append(c1())
+	#First Three day, go to each cafeteria and get the happiness value
+	result = 0 #Result
+	happiness = [] #Empty list to put happy score in
+	happiness.append(c1()) #append happiness into the list
 	happiness.append(c2())
 	happiness.append(c3())
-	result += sum(happiness)
+	result += sum(happiness) #add three days' happyiness point
 	c1n = 1
 	c2n = 1
 	c3n = 1
-	for i in range (297):
+	#The rest 297 days
+	for i in range (297):#Loop starts here
+		#Generate a random number 0 to 100
 		r = 100 * random.random()
+		#Generate a random number 0 to 2(0,1,2,3)
 		x = random.randrange(3)
+		#If the random number r is smaller than e, pick a random cafeteria
 		if (r < e):
+			#according the random number x, if x is 0 go to cafeteria one
 			if (x == 0):
-				c1n += 1
-				c1h = c1()
-				happiness[0] = (happiness[0] + c1h) / c1n
-				result += c1h
+				c1n += 1 #add visit times
+				c1h = c1() #get happiness core using helper function
+				happiness[0] = (happiness[0] + c1h) / c1n #modify the happiness score for this cafeteria so far
+				result += c1h #add the happiness score to the total result
 			elif (x == 1):
-				c2n += 1
+			# if random num x is 1, go to the cafeteria two
+				c2n += 1 
 				c2h = c2()
 				happiness[1] = (happiness[1] + c2h) / c2n
 				result += c2h
 			else:
+			#the last situation is random num x is three, go to the cafeteria three
 				c3n += 1
 				c3h = c3()
 				happiness[2] = (happiness[2] + c3h) / c3n
 				result += c3h
 		else:
-			y = happiness.index(max(happiness))
+		#Otherwise, go to the cafeteria earn the best happiness so far
+			y = happiness.index(max(happiness))#from the happiness list, get the index has the highest number is the best happiness cafeteria so far
+			#If first number is the highest, go to the cafeteria one
 			if (x == 0):
-				c1n += 1
-				c1h = c1()
-				happiness[0] = (happiness[0] + c1h) / c1n
-				result += c1h
+				c1n += 1 #add visit time
+				c1h = c1() #get happiness score by using helper function
+				happiness[0] = (happiness[0] + c1h) / c1n #update the average happiness score 
+				result += c1h # add to result
+			#if the second number is the highest, go to the cafeteria two
 			elif (x == 1):
 				c2n += 1
 				c2h = c2()
 				happiness[1] = (happiness[1] + c2h) / c2n
 				result += c2h
+			#The last situation, the last num is the highest in the list, go to the cafeteria three
 			else:
 				c3n += 1
 				c3h = c3()
 				happiness[2] = (happiness[2] + c3h) / c3n
 				result += c3h
-
+		
+	#Return the happiness score
 	return result
 
 #Junjie Zheng's part
