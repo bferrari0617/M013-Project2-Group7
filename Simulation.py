@@ -173,7 +173,7 @@ def simulation(t,e):
 
 print("trails: 100; e: 12%")
 simulation(100,12)
-print("trails: 10000; e: 12%")
+print("trails: 1,0000; e: 12%")
 simulation(10000,12)
-#print("trails: 100000; e: 36%")
-#simulation(100000,36)
+print("trails: 10,0000; e: 12%")
+simulation(100000,12)
