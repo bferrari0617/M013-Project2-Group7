@@ -21,10 +21,11 @@ def explore_only() -> int:
     return int(h1 + h2 + h3)
 
 
-h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
+
 
 #Eddie Garcia's part
 def exploitOnly() -> float:
+	h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
 	result = 0
 	best = h.index(max(h))
 
