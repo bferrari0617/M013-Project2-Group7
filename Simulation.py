@@ -156,24 +156,25 @@ def simulation(t,e):
 
 
 	print("Optimum happiness: ",Op_happy);
-	print("Expected total happiness for Exploit Only: ",ex_exploit);
-	print("Expected total happiness for Explore Only: ", ex_explore);
-	print("Expected total happiness for eGreedy: ", ex_eGreedy);
-	print("Expected regret for Exploit Only: ", regret_exploit);
-	print("Expected regret for Explore Only: ", regret_explore);
-	print("Expected regret for eGreedy: ", regret_eGreedy);
-	print("Average total happiness for Exploit Only: ", aver_exploit);
-	print("Average total happiness for Explore Only: ", aver_explore);
-	print("Average total happiness for eGreedy: ", aver_eGreedy);
-	print("Average regret for Exploit Only: ", aver_regret1);
-	print("Average regret for Explore Only: ", aver_regret2);
-	print("Average regret for eGreedy: ", aver_regret3);
+	print("Expected total happiness for Exploit Only: ",round(ex_exploit));
+	print("Expected total happiness for Explore Only: ", round(ex_explore));
+	print("Expected total happiness for eGreedy: ", round(ex_eGreedy));
+	print("Expected regret for Exploit Only: ", round(regret_exploit));
+	print("Expected regret for Explore Only: ", round(regret_explore));
+	print("Expected regret for eGreedy: ", round(regret_eGreedy));
+	print("Average total happiness for Exploit Only: ", round(aver_exploit));
+	print("Average total happiness for Explore Only: ", round(aver_explore));
+	print("Average total happiness for eGreedy: ", round(aver_eGreedy));
+	print("Average regret for Exploit Only: ", round(aver_regret1));
+	print("Average regret for Explore Only: ", round(aver_regret2));
+	print("Average regret for eGreedy: ", round(aver_regret3));
 
 	print()
 
-print("trails: 100; e: 12%")
-simulation(100,12)
-print("trails: 1,0000; e: 12%")
-simulation(10000,12)
-print("trails: 10,0000; e: 12%")
-simulation(100000,12)
+	print("trails: 1000; e: 12%")
+	simulation(1000,12)
+	print("trails: 10000; e: 12%")
+	simulation(10000,12)
+	print("trails: 100000; e: 12%")
+	simulation(100000,12)
+
