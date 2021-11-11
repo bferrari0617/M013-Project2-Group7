@@ -61,7 +61,7 @@ def c2():
 	return random.normalvariate(c2avg, c2std)
 def c3():
 	return random.normalvariate(c3avg, c3std)
-#eGreedy(e) starts here, e is percentage
+#eGreedy(e) starts here, input: e -> is percentage, e%
 def eGreedy(e):
 	#First Three day, go to each cafeteria and get the happiness value
 	result = 0 #Result
@@ -125,57 +125,72 @@ def eGreedy(e):
 	return result
 
 #Junjie Zheng's part
+#simulation(t,e) int t -> is the times of trail; int e -> is the given percentage(0-100) use for eGreedy(e)
 def simulation(t,e):
+	#The given number for the project, avg num & std diviation
 	c1a = 9
 	c2a = 7
 	c3a = 11
 	c1s = 3
 	c2s = 5
 	c3s = 7
-
+	
+	# calculate the expect total happiness
+	# n is the times go to each cafeteria during the 300 days
 	n = 300 * (e/100/3)
 
-
+	#Optimum happiness
 	Op_happy = 300*(max(c1a,c2a,c3a))
 
+	#Calculate the expect total happiness score from given average happiness score
 	ex_explore = 100*c1a + 100*c2a + 100*c3a
 	ex_exploit =  c1a + c2a + c3a + 297*(max(c1a,c2a,c3a))
 	ex_eGreedy = (100-e)/100 * 300 * (max(c1a,c2a,c3a)) + c1a * n + c2a * n + c3a * n
-
+	
+	#Calculate the regreat by deduct optimum happiness with expect happiness score
 	regret_explore = Op_happy - ex_explore
 	regret_exploit = Op_happy - ex_exploit
 	regret_eGreedy = Op_happy - ex_eGreedy
 
+	#initial the some integer, initial value is 0
 	total_explore = 0
 	total_exploit = 0
 	total_eGreedy = 0
 
+	#initial another integers here, initial value is 0
 	total_regret1 = 0
 	total_regret2 = 0
 	total_regret3 = 0
-
+	
+	#for loop
+	#loop runs t times, t is the input value of this function
 	for i in range (0,t):
+		#runs the function wrote by other teamate
 		h1 = explore_only()
 		h2 = exploitOnly()
 		h3 = eGreedy(e)
-
+		
+		#Add the happiness return by each function to the total num
 		total_explore += h1
 		total_exploit += h2
 		total_eGreedy += h3
-
+		
+		#Add the regreat
 		total_regret1 += (Op_happy - h1)
 		total_regret2 += (Op_happy - h2)
 		total_regret3 += (Op_happy - h3)
-
+	#The end of for loop
+	
+	#calculate the average happiness score
 	aver_explore = total_explore / t
 	aver_exploit = total_exploit / t
 	aver_eGreedy = total_eGreedy / t
-
+	#calculate the average regret score
 	aver_regret1 = total_regret1 / t
 	aver_regret2 = total_regret2 / t
 	aver_regret3 = total_regret3 / t
-
-
+	
+	#print results:
 	print("Optimum happiness: ",Op_happy);
 	print("Expected total happiness for Exploit Only: ",round(ex_exploit));
 	print("Expected total happiness for Explore Only: ", round(ex_explore));
@@ -189,12 +204,14 @@ def simulation(t,e):
 	print("Average regret for Exploit Only: ", round(aver_regret1));
 	print("Average regret for Explore Only: ", round(aver_regret2));
 	print("Average regret for eGreedy: ", round(aver_regret3));
-
 	print()
-
+	#The end of simulation()
+	
 #Print Results:
 print("trials: 100; e: 12%")
 simulation(100,12)
+print("trials: 1000; e: 12%")
+simulation(1000,12)
 print("trials: 10，000; e: 12%")
 simulation(10000,12)
 print("trials: 100，000; e: 12%")
