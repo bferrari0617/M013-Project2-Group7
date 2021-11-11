@@ -1,5 +1,9 @@
-import random
+#ECS 101 Project 2 Group 7
+#Simulation.py
+#made by Bennett Ferrari, Eddie Garcia, Junjie Zheng, and Timothy Liu
 
+import random
+#Bennett Ferrari's part
 def explore_only() -> int:
     h1 = 0
     h2 = 0
@@ -19,6 +23,7 @@ def explore_only() -> int:
 
 h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
 
+#Eddie Garcia's part
 def exploitOnly() -> float:
 	result = 0
 	best = h.index(max(h))
@@ -40,7 +45,7 @@ def exploitOnly() -> float:
 #!/usr/bin/env python3
 #ECS 101
 #Project 2 part 3
-#Timothy Liu
+#Timothy Liu‘
 
 c1avg = 9
 c1std = 3
@@ -104,6 +109,7 @@ def eGreedy(e):
 
 	return result
 
+#Junjie Zheng's part
 def simulation(t,e):
 	c1a = 9
 	c2a = 7
@@ -171,6 +177,7 @@ def simulation(t,e):
 
 	print()
 
+#Print Results:
 print("trails: 1000; e: 12%")
 simulation(1000,12)
 print("trails: 10000; e: 12%")
