@@ -5,10 +5,12 @@
 import random
 #Bennett Ferrari's part
 def explore_only() -> int:
-    h1 = 0
+# creates variable to store happiness values of the three cafes. creates index variable for while loop.
+    h1 = 0  
     h2 = 0
     h3 = 0
     i = 0
+# visits cafe 1, 2, 3 for 100 days each, generating a new happiness value and adding it to the sum.
     while i < 100:
         h1 += random.normalvariate(9, 3)
         i += 1
@@ -18,6 +20,7 @@ def explore_only() -> int:
     while i < 300:
         h3 += random.normalvariate(11, 7)
         i += 1
+# returns sum of total happiness of the three cafes across 300 days
     return int(h1 + h2 + h3)
 
 
@@ -25,22 +28,25 @@ def explore_only() -> int:
 
 #Eddie Garcia's part
 def exploitOnly() -> float:
+	# list with three different normal distributions based on given mean and standard deviation, simulating visits to three different cafes on three different days
 	h = [random.normalvariate(9, 3), random.normalvariate(7, 5), random.normalvariate(11, 7)]
 	result = 0
+	#finds index of the highest happiness value among the three cafes
 	best = h.index(max(h))
-
+	# saves of the mean and standard deviation of the best cafe by using the index of the highest happiness value in 'h'
 	if best == 0:
 		m, d = 9, 3
 	elif best == 1:
 		m, d = 7, 5
 	else:
 		m, d = 11, 7
-
+	# adds happiness values from first three days to result
 	for item in h:
 		result += item
+	# visits the best cafe for 297 days, saving it to result
 	for i in range(297):
 		result += random.normalvariate(m, d)
-
+	# returns total happiness
 	return result
 
 #!/usr/bin/env python3
