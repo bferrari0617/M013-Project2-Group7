@@ -202,8 +202,8 @@ def simulation(t,e):
 	print("Average total happiness for Exploit Only: ", round(aver_exploit));
 	print("Average total happiness for Explore Only: ", round(aver_explore));
 	print("Average total happiness for eGreedy: ", round(aver_eGreedy));
-	print("Average regret for Exploit Only: ", round(aver_regret1));
-	print("Average regret for Explore Only: ", round(aver_regret2));
+	print("Average regret for Exploit Only: ", round(aver_regret2));
+	print("Average regret for Explore Only: ", round(aver_regret1));
 	print("Average regret for eGreedy: ", round(aver_regret3));
 	print()
 	#The end of simulation()
